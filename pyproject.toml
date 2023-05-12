@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "dc2-g22"
+version = "0.1.0"
+description = ""
+authors = ["Shapkofil <ldshapkofil@gmail.com>"]
+readme = "README.md"
+packages = [{include = "dc2_g22"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
