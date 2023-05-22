@@ -8,7 +8,22 @@ packages = [{include = "dc2_g22"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pandas = "^2.0.1"
+pyarrow = "^12.0.0"
+dvclive = "^2.9.0"
+torch = [
+  {url = "https://download.pytorch.org/whl/cu118/torch-2.0.1%2Bcu118-cp38-cp38-linux_x86_64.whl",  markers = "sys_platform == 'linux'"},
+]
+tqdm = "^4.65.0"
+scikit-learn = "^1.2.2"
 
+[[tool.poetry.source]]
+name = "torch"
+url = "https://download.pytorch.org/whl/cu118"
+secondary = true
+
+[tool.poetry.scripts]
+lstm-train = "dc2_g22.lstm.main:start"
 
 [build-system]
 requires = ["poetry-core"]
