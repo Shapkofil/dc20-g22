@@ -13,6 +13,7 @@ pyarrow = "^12.0.0"
 dvclive = "^2.9.0"
 torch = [
   {url = "https://download.pytorch.org/whl/cu118/torch-2.0.1%2Bcu118-cp38-cp38-linux_x86_64.whl",  markers = "sys_platform == 'linux'"},
+  {url = "https://download.pytorch.org/whl/cu118/torch-2.0.1%2Bcu118-cp38-cp38-win_amd64.whl",  markers = "sys_platform == 'win32'"}
 ]
 tqdm = "^4.65.0"
 scikit-learn = "^1.2.2"
