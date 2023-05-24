@@ -17,8 +17,8 @@ class WardCrimeDataset(Dataset):
                  device:str = "cpu") -> None:
         X = Path(X) 
         self.data = WardCrimeDataset.slurp_data_from_cached(X)
-        self.points = self.data[1:]
-        self.targets = self.data[:-1]
+        self.points = self.data[:-1]
+        self.targets = self.data[1:]
         self.lags = lags
         self.device = device
 
@@ -31,12 +31,14 @@ class WardCrimeDataset(Dataset):
         Return the X and y
         """
 
-        nplag = lambda x, y: np.stack([x - y + i for i in range(y + 1)], axis=-1)
+        nplag = lambda x, y: np.stack([x - y + i - 1 for i in range(y + 1)], axis=-1)
         if isinstance(idx, int) or isinstance(idx, np.integer):
             X_idx = np.arange(idx - self.lags, idx + 1)
+            # print(idx, X_idx)
         elif isinstance(idx, slice):
             X_idx = nplag(np.arange(idx.start, idx.stop, idx.step),
                           self.lags)
+            # print(idx, X_idx)
         elif isinstance(idx, np.ndarray):
             X_idx = nplag(idx,
                           self.lags)
@@ -115,7 +117,7 @@ class BatchLoader():
            
         for batch_index in range(0, len(self.index), self.sampler.batch_size):
             batch = self.sampler.dataset[
-                batch_index: batch_index + self.sampler.batch_size]
+                batch_index: batch_index + self.sampler.batch_size + 1]
 
             # Get all the X but only the last target
             yield batch

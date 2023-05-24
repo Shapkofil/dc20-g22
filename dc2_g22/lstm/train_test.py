@@ -11,10 +11,10 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percenta
 from dvclive import Live
 	
 
-def save_checkpoint(state, is_best, filename='checkpoint.pth'):
+def save_checkpoint(state, is_best, filename='model_checkpoints/checkpoint.pth'):
     torch.save(state, filename)
     if is_best:
-        shutil.copyfile(filename, 'model_best.pth')
+        shutil.copyfile(filename, 'model_checkpoints/model_best.pth')
 
 
 def log_experiment(
@@ -98,7 +98,7 @@ def train_test_loop(model: nn.Module,
                     args = None):
 
     live.log_param("epochs", n_epochs)
-    best_loss = 0
+    best_loss = 1_000_000
     trainloader = BatchLoader(sampler)
     testloader = BatchLoader(sampler, test=True)
     for epoch in range(n_epochs):
@@ -129,6 +129,7 @@ def train_test_loop(model: nn.Module,
         }, is_best)
 
         live.next_step()
-    #live.log_artifact('model_best.pth')
+    live.log_artifact('model_checkpoints/model_best.pth',
+                      type="model")
 
     
