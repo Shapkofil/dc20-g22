@@ -20,6 +20,8 @@ scikit-learn = "^1.2.2"
 
 [tool.poetry.scripts]
 lstm-train = "dc2_g22.lstm.main:start"
+lstm-prep = "dc2_g22.lstm.feature_extraction:start"
+lstm-predict = "dc2_g22.lstm.predict:start"
 
 [build-system]
 requires = ["poetry-core"]
