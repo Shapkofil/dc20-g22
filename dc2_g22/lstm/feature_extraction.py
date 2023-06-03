@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler, RobustScaler
 
 import argparse
 
-class DataPrepper():
+class DataPrepper:
     def __init__(self,
                  input_path: str,
                  scaling: str):
@@ -12,7 +12,6 @@ class DataPrepper():
         onehot_df = self.df.iloc[
             :, [1] + list(range(64-23, 64))]
         self.month_embeds = onehot_df.groupby("Month").sum()
-        self.month_totals = self.month_embeds.sum(axis=1)
 
         if scaling == "robust":
             self.scaler = RobustScaler()
@@ -21,11 +20,12 @@ class DataPrepper():
             self.scaler = StandardScaler()
             self.scaler.fit(self.month_embeds)
         else:
-            raise NotImplementedError()
+            raise NotImplementedError(f"{scaling} scaling is not supported")
 
-        self.normalized_df = self.scaler.transform(self.month_embeds)
         self.normalized_df = pd.DataFrame(
-            self.normalized_df, columns=self.month_embeds.columns)
+            self.scaler.transform(self.month_embeds),
+            columns=self.month_embeds.columns,
+            index=self.month_embeds.index)
 
     def save(self, path):
         self.normalized_df.to_parquet(path)
