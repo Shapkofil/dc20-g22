@@ -43,7 +43,7 @@ def main(args):
                           device)
     model.to(device)
 
-    dataset = WardCrimeDataset(args.dataset_path, args.lags,  device)
+    dataset = WardCrimeDataset(args.dataset_path, args.lags, device)
     sampler = BatchSampler(args.batch_size, args.lags, dataset, args.train_ratio)
     criterion = torch.nn.MSELoss()
 

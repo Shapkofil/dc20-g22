@@ -42,7 +42,8 @@ def predict(args, model, dataset):
     dataset.split_targets()
 
     for link in range(args["chain_len"]):
-        points, _ = dataset[-1]
+        # points, _ = dataset[-1]
+        dataset[-3: -1]
         with torch.no_grad():
             raw_prediction = model(points).to("cpu").numpy()
         prediction = raw_prediction.reshape(1, raw_prediction.shape[0])
