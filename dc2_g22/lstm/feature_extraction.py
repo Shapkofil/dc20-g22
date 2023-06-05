@@ -19,13 +19,25 @@ class DataPrepper:
         elif scaling == "standard":
             self.scaler = StandardScaler()
             self.scaler.fit(self.month_embeds)
+        elif scaling == "none":
+            self.scaler = None
         else:
             raise NotImplementedError(f"{scaling} scaling is not supported")
 
         self.normalized_df = pd.DataFrame(
-            self.scaler.transform(self.month_embeds),
+            self.transform(self.month_embeds),
             columns=self.month_embeds.columns,
             index=self.month_embeds.index)
+
+    def transform(self, X):
+        if self.scaler is None:
+            return X
+        return self.scaler.transform(X)
+
+    def inverse_transform(self, X):
+        if self.scaler is None:
+            return X
+        return self.scaler.inverse_transform(X)
 
     def save(self, path):
         self.normalized_df.to_parquet(path)

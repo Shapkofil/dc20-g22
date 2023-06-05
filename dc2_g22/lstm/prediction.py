@@ -42,8 +42,8 @@ def predict(args, model, dataset):
     dataset.split_targets()
 
     for link in range(args["chain_len"]):
-        # points, _ = dataset[-1]
-        dataset[-3: -1]
+        points, _ = dataset[-1]
+        # dataset[-3: -1]
         with torch.no_grad():
             raw_prediction = model(points).to("cpu").numpy()
         prediction = raw_prediction.reshape(1, raw_prediction.shape[0])
@@ -78,7 +78,7 @@ def main(args):
 
     raw_prediction = predict(args, model, dataset)
     scaled = pd.DataFrame(
-        dp.scaler.inverse_transform(raw_prediction),
+        dp.inverse_transform(raw_prediction),
         columns=raw_prediction.columns,
         index=raw_prediction.index)
     print(scaled)
@@ -100,7 +100,7 @@ def start():
     parser.add_argument("--output_path", type=str, help="Output of predictions per month")
     parser.add_argument("--chain_len", type=int, help="Months to predict at the end of the data")
     parser.add_argument("--scaling", type=str,
-                        choices = ["robust", "standard", "minmax"],
+                        choices=["robust", "standard", "none"],
                         help="Kind  of scaling")
     parser.add_argument("--future", action="store_true",
                         help="Start prediction in the future")
