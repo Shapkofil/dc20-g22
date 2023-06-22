@@ -28,6 +28,7 @@ lstm-predict = "dc2_g22.lstm.prediction:start"
 [tool.poetry.group.dev.dependencies]
 jupyterlab = "^4.0.1"
 jupyterlab-vim = "^0.16.0"
+pdoc = "^14.0.0"
 
 [build-system]
 requires = ["poetry-core"]
