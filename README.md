@@ -1,5 +1,10 @@
 # Data challenge 2 Group 22
 
+## Documentation
+
+Techincal documentation and structure of our modules could be found by opening
+`docs/dc2_g22.html` in your preferred browser.
+
 ## Installation
 
 You must have python 3.8.16 installed
