@@ -64,5 +64,5 @@ dvc plots diff $(dvc show exp --names-only)
 
 ### Exploring notebooks
 
-In `dc2_g22/notebooks` you can find `*.ipynb` files that we used to process data and try out secondary models such as Prophet or Linear Regression, that didn't rely on pytorch.
+In 'dc2_g22/notebooks', you can find '*.ipynb' files that we used to process data and introduce new datasets. Additionally, you can find our EDA plots in 'recommendations.ipynb', predictive models such as Prophet in 'Prophet.ipynb', and our allocation system in 'police_force_allocation.ipynb'.
 
