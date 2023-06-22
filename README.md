@@ -12,6 +12,7 @@ poetry shell
 It will take a few minutes to build the environment.
 
 Once completed with no errors and the poetry shell is Installed proceed to usage.
+All commands described in the usage section are available exclusively in the poetry shell.
 
 ## Usage
 
@@ -21,9 +22,9 @@ This repository implements 3 specific commands to try out our code.
 
 `lstm-train`, `lstm-prep` and `lstm-predict`
 
-- lstm-prep transforms a street.parquet data set to a lstm ready version
-- lstm-train trains an lstm model and records that experiment with dvc
-- lstm-predicts uses the best model to predict an year ahead.
+- `lstm-prep` transforms a street.parquet data set to a lstm ready version
+- `lstm-train` trains an lstm model and records that experiment with dvc
+- `lstm-predicts` uses the best model to predict an year ahead.
 
 ### Viewing experiments
 
