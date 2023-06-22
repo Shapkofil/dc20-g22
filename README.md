@@ -27,9 +27,26 @@ This repository implements 3 specific commands to try out our code.
 
 `lstm-train`, `lstm-prep` and `lstm-predict`
 
+
+Important to run training from lstm-predict
+
 - `lstm-prep` transforms a street.parquet data set to a lstm ready version
 - `lstm-train` trains an lstm model and records that experiment with dvc
 - `lstm-predicts` uses the best model to predict an year ahead.
+
+passing and --help flag to there commands shows intended usage.
+
+#### Examples experiment 
+
+``` shell
+lstm-train --dataset_path data/lstm.parquet --num_epochs 150 --num_layers 2 --hidden_size 64 --batch_size 32 --lags 24 --learning_rate 0.0001 --optimizer adam
+```
+
+#### Example prediction
+
+``` shell
+lstm-predict --raw_path data/linearmodel.parquet -d data/lstm.parquet --model_path model_checkpoints/model_best.pth --chain_len 3 --output_path data/ --scaling robust
+``` 
 
 ### Viewing experiments
 
