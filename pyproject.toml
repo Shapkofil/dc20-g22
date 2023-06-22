@@ -17,11 +17,17 @@ torch = [
 ]
 tqdm = "^4.65.0"
 scikit-learn = "^1.2.2"
+geopandas = "^0.13.2"
+matplotlib = "^3.7.1"
 
 [tool.poetry.scripts]
 lstm-train = "dc2_g22.lstm.main:start"
 lstm-prep = "dc2_g22.lstm.feature_extraction:start"
 lstm-predict = "dc2_g22.lstm.prediction:start"
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "^4.0.1"
+jupyterlab-vim = "^0.16.0"
 
 [build-system]
 requires = ["poetry-core"]
